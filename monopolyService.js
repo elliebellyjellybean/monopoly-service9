@@ -47,6 +47,7 @@ const router = express.Router();
 router.use(express.json());
 
 router.get('/', readHelloMessage);
+router.get('/', readJoin);
 router.get('/players', readPlayers);
 router.get('/players/:id', readPlayer);
 router.put('/players/:id', updatePlayer);
@@ -68,6 +69,16 @@ function returnDataOr404(res, data) {
 
 function readHelloMessage(req, res) {
   res.send('Hello, CS 262 Monopoly service!');
+}
+
+function readJoin(req, res, next){
+  db.many('SELECT * FROM Player JOIN PlayerGame')
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
 }
 
 function readPlayers(req, res, next) {

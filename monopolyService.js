@@ -72,7 +72,7 @@ function readHelloMessage(req, res) {
 }
 
 function readJoin(req, res, next){
-  db.many('SELECT * FROM Player JOIN PlayerGame')
+  db.many('SELECT * FROM Player NATURAL JOIN PlayerGame')
     .then((data) => {
       res.send(data);
     })

@@ -47,7 +47,7 @@ const router = express.Router();
 router.use(express.json());
 
 router.get('/', readHelloMessage);
-router.get('/', readJoin);
+router.get('/join', readJoin);
 router.get('/players', readPlayers);
 router.get('/players/:id', readPlayer);
 router.put('/players/:id', updatePlayer);
